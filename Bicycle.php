@@ -1,56 +1,24 @@
 <?php
 
-class Bicycle
+require_once 'Vehicle.php';
+require_once 'LightableInterface.php';
+
+class Bicycle extends Vehicle implements LightableInterface
 {
-    private string $color;
-
-    private int $currentSpeed;
-
-    private int $nbSeats = 1;
-
-    private int $nbWheels = 2;
-
-    public function forward(): string
-{
-    $this->currentSpeed = 15;
-
-    return "Go !";
+    public function switchOn(bool $isOn): bool
+    {
+        if($this->currentSpeed>10){
+        return $isOn = true;
+    }
 }
 
-public function brake(): string
-{
-   $sentence = "";
-   while ($this->currentSpeed > 0) {
-       $this->currentSpeed--;
-       $sentence .= "Brake !!!";
-   }
-   $sentence .= "I'm stopped !";
-   return $sentence;
+    public function switchOff(bool $isOff): bool
+    {
+        return $isOff = false;
+    }
 }
 
-public function getColor(): string
-{
-    return $this->color;
-}
+$bicycle = new Bicycle('blue', 1);
+echo $bicycle->forward();
 
-public function setColor(string $color): void
-{
-    $this->color = $color;
-}
 
-public function getCurrentSpeed(): int
-{
-    return $this->currentSpeed;
-}
-
-public function setCurrentSpeed(int $currentSpeed): void
-{
-    $this->currentSpeed = $currentSpeed;
-}
-
-public function __construct(string $color)
-{
-    $this->color = $color;
-}
-
-}
